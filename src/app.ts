@@ -1,4 +1,4 @@
-import fastify, { FastifyReply } from "fastify";
+import fastify, { FastifyReply } from 'fastify'
 
 export const app = fastify()
 
