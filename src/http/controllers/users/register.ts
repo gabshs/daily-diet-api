@@ -1,6 +1,7 @@
 import { ResourceAlreadyExistsError } from '@/use-cases/errors/resource-already-exists-error'
 import { RegisterUseCase } from '@/use-cases/user/register'
 import { FastifyReply, FastifyRequest } from 'fastify'
+import { inject, injectable } from 'tsyringe'
 import { z } from 'zod'
 
 const registerUserBodySchema = z.object({
@@ -9,8 +10,12 @@ const registerUserBodySchema = z.object({
   password: z.string().min(6),
 })
 
+@injectable()
 export class RegisterUserController {
-  constructor(private readonly registerUserUseCase: RegisterUseCase) {}
+  constructor(
+    @inject(RegisterUseCase)
+    private readonly registerUserUseCase: RegisterUseCase,
+  ) {}
 
   async handle(request: FastifyRequest, reply: FastifyReply) {
     const { name, email, password } = registerUserBodySchema.parse(request.body)
