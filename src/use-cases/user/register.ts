@@ -20,11 +20,11 @@ export class RegisterUseCase {
   async execute({ name, email, password }: RegisterUserUseCaseParams) {
     const userAlreadyExists = await this.usersRepository.findByEmail(email)
 
-    if (!userAlreadyExists) {
+    if (userAlreadyExists) {
       throw new ResourceAlreadyExistsError('User')
     }
 
-    const passwordHash = await hash(password, 'dailyDietApi')
+    const passwordHash = await hash(password, 6)
 
     const user = await this.usersRepository.create({
       name,
