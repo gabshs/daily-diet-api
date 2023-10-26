@@ -7,7 +7,7 @@ export class InMemoryMealsRepository implements MealsRepository {
 
   async create(data: Prisma.MealUncheckedCreateInput): Promise<Meal> {
     const meal: Meal = {
-      id: randomUUID(),
+      id: data.id ?? randomUUID(),
       name: data.name,
       description: data.description,
       is_on_diet: data.is_on_diet,
