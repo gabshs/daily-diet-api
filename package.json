@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run --dir src/use-cases"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,8 @@
     "prisma": "^5.5.1",
     "tsup": "^7.2.0",
     "tsx": "^3.14.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "^0.34.6"
   }
 }
