@@ -1,5 +1,6 @@
 import { UsersRepository } from '@/repositories/users-repository'
 import { hash } from 'bcrypt'
+import { ResourceAlreadyExistsError } from '../errors/resource-already-exists-error'
 
 export interface RegisterUserUseCaseParams {
   name: string
@@ -13,7 +14,7 @@ export class RegisterUseCase {
     const userAlreadyExists = await this.usersRepository.findByEmail(email)
 
     if (!userAlreadyExists) {
-      throw new Error()
+      throw new ResourceAlreadyExistsError('User')
     }
 
     const passwordHash = await hash(password, 'dailyDietApi')
