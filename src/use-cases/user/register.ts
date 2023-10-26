@@ -33,7 +33,7 @@ export class RegisterUseCase {
     })
 
     return {
-      user: { ...user, password_hash: undefined },
+      user,
     }
   }
 }

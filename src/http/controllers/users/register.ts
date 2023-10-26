@@ -21,12 +21,12 @@ export class RegisterUserController {
     const { name, email, password } = registerUserBodySchema.parse(request.body)
 
     try {
-      const registeredUser = await this.registerUserUseCase.execute({
+      await this.registerUserUseCase.execute({
         name,
         email,
         password,
       })
-      return reply.status(201).send({ data: registeredUser })
+      return reply.status(201).send()
     } catch (error) {
       if (error instanceof ResourceAlreadyExistsError) {
         return reply.status(409).send({ message: error.message })
