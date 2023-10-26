@@ -21,7 +21,7 @@ export class RegisterMealUseCase {
     const meal = await this.mealsRepository.create({
       name,
       description,
-      eaten_at: eatenAt,
+      eaten_at: new Date(eatenAt),
       is_on_diet: isOnDiet,
       user_id: userId,
     })
