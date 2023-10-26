@@ -6,7 +6,7 @@ export interface RegisterUserUseCaseParams {
   email: string
   password: string
 }
-export class Register {
+export class RegisterUseCase {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   async execute({ name, email, password }: RegisterUserUseCaseParams) {
