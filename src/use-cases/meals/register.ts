@@ -3,7 +3,7 @@ import { MealsRepository } from '@/repositories/meals-repository'
 interface RegisterMealUseCaseParams {
   name: string
   description: string
-  eatenAt: string
+  eatenAt: Date
   isOnDiet: boolean
   userId: string
 }
@@ -21,7 +21,7 @@ export class RegisterMealUseCase {
     const meal = await this.mealsRepository.create({
       name,
       description,
-      eaten_at: new Date(eatenAt),
+      eaten_at: eatenAt,
       is_on_diet: isOnDiet,
       user_id: userId,
     })

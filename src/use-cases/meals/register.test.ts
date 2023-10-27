@@ -15,7 +15,7 @@ describe('RegisterMealUseCase', () => {
     const { meal } = await sut.execute({
       name: 'Strogonof de frango',
       description: 'Arroz branco, strogonof de frango, batata frita',
-      eatenAt: '2023-10-25T20:55:00.000Z',
+      eatenAt: new Date('2023-10-25T20:55:00.000Z'),
       isOnDiet: false,
       userId: randomUUID(),
     })
