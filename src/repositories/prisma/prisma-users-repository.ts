@@ -1,9 +1,9 @@
-import { Prisma, User } from '@prisma/client'
-import { UsersRepository } from '../users-repository'
 import { prisma } from '@/lib/prisma'
-import { injectable } from 'tsyringe'
+import { Prisma, User } from '@prisma/client'
+import { singleton } from 'tsyringe'
+import { UsersRepository } from '../users-repository'
 
-@injectable()
+@singleton()
 export class PrismaUsersRepository implements UsersRepository {
   async create(data: Prisma.UserCreateInput): Promise<User> {
     return await prisma.user.create({ data })
