@@ -4,7 +4,7 @@ import { inject, singleton } from 'tsyringe'
 import { z } from 'zod'
 
 const listMealsQuerySchema = z.object({
-  page: z.coerce.number().default(1),
+  page: z.coerce.number().min(1).default(1),
 })
 
 @singleton()
