@@ -1,4 +1,5 @@
 import { MealsRepository } from '@/repositories/meals-repository'
+import { inject, injectable } from 'tsyringe'
 
 interface RegisterMealUseCaseParams {
   name: string
@@ -8,8 +9,12 @@ interface RegisterMealUseCaseParams {
   userId: string
 }
 
+@injectable()
 export class RegisterMealUseCase {
-  constructor(private readonly mealsRepository: MealsRepository) {}
+  constructor(
+    @inject('MealsRepository')
+    private readonly mealsRepository: MealsRepository,
+  ) {}
 
   async execute({
     name,
