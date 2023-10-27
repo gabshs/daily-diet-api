@@ -6,7 +6,7 @@ import { z } from 'zod'
 const registerMealBodySchema = z.object({
   name: z.string(),
   description: z.string(),
-  eatenAt: z.date(),
+  eatenAt: z.coerce.date(),
   isOnDiet: z.boolean(),
 })
 
