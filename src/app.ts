@@ -1,9 +1,9 @@
 import fastify from 'fastify'
 import 'reflect-metadata'
-import { container } from 'tsyringe'
 import { UsersRoutes } from './http/controllers/users/routes'
 import { ZodError } from 'zod'
 import fastifyJwt from '@fastify/jwt'
+import { container } from './di/container'
 
 export const app = fastify()
 
