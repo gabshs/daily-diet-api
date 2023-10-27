@@ -3,6 +3,7 @@ import { inject, singleton } from 'tsyringe'
 import { RegisterMealController } from './register'
 import { verifyJWT } from '@/http/middlewares/verify-jwt'
 import { ListMealsController } from './list-all'
+import { FindMealController } from './find'
 
 @singleton()
 export class MealsRoutes {
@@ -11,6 +12,8 @@ export class MealsRoutes {
     private readonly registerMealController: RegisterMealController,
     @inject(ListMealsController)
     private readonly listMealsController: ListMealsController,
+    @inject(FindMealController)
+    private readonly findMealController: FindMealController,
   ) {}
 
   async mountRoutes(app: FastifyInstance) {
@@ -22,6 +25,10 @@ export class MealsRoutes {
 
     app.get('/', (request, reply) =>
       this.listMealsController.handle(request, reply),
+    )
+
+    app.get('/:mealId', (request, reply) =>
+      this.findMealController.handle(request, reply),
     )
   }
 }
