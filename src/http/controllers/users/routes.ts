@@ -17,7 +17,7 @@ export class UsersRoutes {
       this.registerUserController.handle(request, reply),
     )
 
-    app.post('/sessions/', (request, reply) =>
+    app.post('/sessions', (request, reply) =>
       this.authenticateUserController.handle(request, reply),
     )
   }
