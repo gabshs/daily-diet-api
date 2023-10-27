@@ -17,6 +17,8 @@ model User {
   password_hash String
   created_at    DateTime @default(now())
   Meal          Meal[]
+
+  @@map("users")
 }
 
 model Meal {
@@ -28,4 +30,6 @@ model Meal {
   user        User     @relation(fields: [user_id], references: [id])
   user_id     String
   created_at  DateTime @default(now())
+
+  @@map("meals")
 }
