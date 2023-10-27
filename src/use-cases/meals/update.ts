@@ -1,5 +1,6 @@
 import { MealsRepository } from '@/repositories/meals-repository'
 import { ResourceNotFoundError } from '../errors/resource-not-found-error'
+import { inject, injectable } from 'tsyringe'
 
 interface UpdateMealUseCaseParams {
   userId: string
@@ -10,8 +11,12 @@ interface UpdateMealUseCaseParams {
   isOnDiet?: boolean
 }
 
+@injectable()
 export class UpdateMealUseCase {
-  constructor(private mealsRepository: MealsRepository) {}
+  constructor(
+    @inject('MealsRepository')
+    private readonly mealsRepository: MealsRepository,
+  ) {}
 
   async execute({
     mealId,
