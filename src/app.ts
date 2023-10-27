@@ -4,6 +4,7 @@ import { UsersRoutes } from './http/controllers/users/routes'
 import { ZodError } from 'zod'
 import fastifyJwt from '@fastify/jwt'
 import { container } from './di/container'
+import { MealsRoutes } from './http/controllers/meals/routes'
 
 export const app = fastify()
 
@@ -13,9 +14,14 @@ app.register(fastifyJwt, {
 })
 
 const usersRoutes = container.resolve(UsersRoutes)
+const mealsRoutes = container.resolve(MealsRoutes)
 
 app.register((instance) => usersRoutes.mountRoutes(instance), {
   prefix: '/users',
+})
+
+app.register((instance) => mealsRoutes.mountRoutes(instance), {
+  prefix: '/meals',
 })
 
 app.setErrorHandler((error, _, reply) => {
