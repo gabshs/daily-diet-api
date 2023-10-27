@@ -36,7 +36,7 @@ export class UpdateMealUseCase {
       name: name || meal.name,
       description: description || meal.description,
       eaten_at: eatenAt || meal.eaten_at,
-      is_on_diet: isOnDiet || meal.is_on_diet,
+      is_on_diet: isOnDiet ?? meal.is_on_diet,
     })
 
     await this.mealsRepository.update(updatedMeal)
