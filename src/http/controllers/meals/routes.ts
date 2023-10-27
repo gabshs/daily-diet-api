@@ -6,6 +6,7 @@ import { ListMealsController } from './list-all'
 import { FindMealController } from './find'
 import { DeleteMealController } from './delete'
 import { GetMealsMetricsController } from './metrics'
+import { UpdateMealController } from './update'
 
 @singleton()
 export class MealsRoutes {
@@ -20,6 +21,8 @@ export class MealsRoutes {
     private readonly deleteMealController: DeleteMealController,
     @inject(GetMealsMetricsController)
     private readonly getMealsMetricsController: GetMealsMetricsController,
+    @inject(UpdateMealController)
+    private readonly updateMealsController: UpdateMealController,
   ) {}
 
   async mountRoutes(app: FastifyInstance) {
@@ -35,6 +38,10 @@ export class MealsRoutes {
 
     app.get('/:mealId', (request, reply) =>
       this.findMealController.handle(request, reply),
+    )
+
+    app.patch('/:mealId', (request, reply) =>
+      this.updateMealsController.handle(request, reply),
     )
 
     app.delete('/:mealId', (request, reply) =>
