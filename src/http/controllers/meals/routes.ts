@@ -4,6 +4,7 @@ import { RegisterMealController } from './register'
 import { verifyJWT } from '@/http/middlewares/verify-jwt'
 import { ListMealsController } from './list-all'
 import { FindMealController } from './find'
+import { DeleteMealController } from './delete'
 
 @singleton()
 export class MealsRoutes {
@@ -14,6 +15,8 @@ export class MealsRoutes {
     private readonly listMealsController: ListMealsController,
     @inject(FindMealController)
     private readonly findMealController: FindMealController,
+    @inject(DeleteMealController)
+    private readonly deleteMealController: DeleteMealController,
   ) {}
 
   async mountRoutes(app: FastifyInstance) {
@@ -29,6 +32,10 @@ export class MealsRoutes {
 
     app.get('/:mealId', (request, reply) =>
       this.findMealController.handle(request, reply),
+    )
+
+    app.delete('/:mealId', (request, reply) =>
+      this.deleteMealController.handle(request, reply),
     )
   }
 }
