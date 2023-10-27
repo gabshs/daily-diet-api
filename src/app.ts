@@ -3,8 +3,14 @@ import 'reflect-metadata'
 import { container } from 'tsyringe'
 import { UsersRoutes } from './http/controllers/users/routes'
 import { ZodError } from 'zod'
+import fastifyJwt from '@fastify/jwt'
 
 export const app = fastify()
+
+app.register(fastifyJwt, {
+  secret: 'dailyDietJWTToken',
+  sign: { expiresIn: '1d' },
+})
 
 const usersRoutes = container.resolve(UsersRoutes)
 
