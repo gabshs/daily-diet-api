@@ -16,9 +16,7 @@ app.register(fastifyJwt, {
 const usersRoutes = container.resolve(UsersRoutes)
 const mealsRoutes = container.resolve(MealsRoutes)
 
-app.register((instance) => usersRoutes.mountRoutes(instance), {
-  prefix: '/users',
-})
+app.register((instance) => usersRoutes.mountRoutes(instance))
 
 app.register((instance) => mealsRoutes.mountRoutes(instance), {
   prefix: '/meals',

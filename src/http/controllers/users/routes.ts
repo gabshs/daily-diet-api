@@ -13,11 +13,11 @@ export class UsersRoutes {
   ) {}
 
   async mountRoutes(app: FastifyInstance) {
-    app.post('/', (request, reply) =>
+    app.post('/users', (request, reply) =>
       this.registerUserController.handle(request, reply),
     )
 
-    app.post('/authenticate', (request, reply) =>
+    app.post('/sessions/', (request, reply) =>
       this.authenticateUserController.handle(request, reply),
     )
   }
