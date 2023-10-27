@@ -1,5 +1,6 @@
 import { UsersRepository } from '@/repositories/users-repository'
 import { compare } from 'bcrypt'
+import { inject, singleton } from 'tsyringe'
 import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 
 export interface AuthenticateUseCaseParams {
@@ -7,8 +8,12 @@ export interface AuthenticateUseCaseParams {
   password: string
 }
 
+@singleton()
 export class AuthenticateUseCase {
-  constructor(private readonly usersRepository: UsersRepository) {}
+  constructor(
+    @inject('UsersRepository')
+    private readonly usersRepository: UsersRepository,
+  ) {}
 
   async execute({ email, password }: AuthenticateUseCaseParams) {
     const user = await this.usersRepository.findByEmail(email)
